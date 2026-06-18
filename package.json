@@ -1,5 +1,5 @@
 {
-  "name": "suno-api",
+  "name": "suno-api-5.5",
   "description": "Use API to call the music generation service of suno.ai, and easily integrate it into agents like GPTs.",
   "author": {
     "name": "gcui.ai",
