@@ -20,6 +20,14 @@ globalForSunoApi.sunoApiCache = cache;
 const logger = pino();
 export const DEFAULT_MODEL = 'chirp-v3-5';
 
+/** Normalize slider input: accepts 0–1 or 0–100 (percent). */
+export function normalizeSlider(value?: number): number | undefined {
+  if (value === undefined || value === null || Number.isNaN(value)) return undefined;
+  const n = Number(value);
+  if (n < 0 || n > 100) return undefined;
+  return n > 1 ? n / 100 : n;
+}
+
 export interface AudioInfo {
   id: string; // Unique identifier for the audio
   title?: string; // Title of the audio
@@ -509,7 +517,9 @@ class SunoApi {
     make_instrumental: boolean = false,
     model?: string,
     wait_audio: boolean = false,
-    negative_tags?: string
+    negative_tags?: string,
+    weirdness_constraint?: number,
+    style_weight?: number
   ): Promise<AudioInfo[]> {
     const startTime = Date.now();
     const audios = await this.generateSongs(
@@ -520,7 +530,12 @@ class SunoApi {
       make_instrumental,
       model,
       wait_audio,
-      negative_tags
+      negative_tags,
+      undefined,
+      undefined,
+      undefined,
+      weirdness_constraint,
+      style_weight
     );
     const costTime = Date.now() - startTime;
     logger.info(
@@ -555,7 +570,9 @@ class SunoApi {
     negative_tags?: string,
     task?: string,
     continue_clip_id?: string,
-    continue_at?: number
+    continue_at?: number,
+    weirdness_constraint?: number,
+    style_weight?: number
   ): Promise<AudioInfo[]> {
     await this.keepAlive();
     const payload: any = {
@@ -576,6 +593,10 @@ class SunoApi {
     } else {
       payload.gpt_description_prompt = prompt;
     }
+    const weirdness = normalizeSlider(weirdness_constraint);
+    const styleInfluence = normalizeSlider(style_weight);
+    if (weirdness !== undefined) payload.weirdness_constraint = weirdness;
+    if (styleInfluence !== undefined) payload.style_weight = styleInfluence;
     logger.info(
       'generateSongs payload:\n' +
         JSON.stringify(
