@@ -1,4 +1,5 @@
 import Section from "./components/Section";
+import SunoFunnel from "./components/SunoFunnel";
 import Markdown from 'react-markdown';
 
 
@@ -13,7 +14,9 @@ Suno.ai v3 is an amazing AI music service. Although the official API is not yet 
 
 We discovered that some users have similar needs, so we decided to open-source this project, hoping you'll like it.
 
-We update quickly, please star us on Github:  [github.com/gcui-art/suno-api](https://github.com/gcui-art/suno-api) ⭐
+We update quickly, please star us on Github:  [github.com/raptor7242N/suno-api-5.5](https://github.com/raptor7242N/suno-api-5.5) ⭐
+
+Fork of [gcui-art/suno-api](https://github.com/gcui-art/suno-api) with Vercel deployment fixes and a built-in **Suno Funnel** connector.
 
 ## 🌟 Features
 
@@ -46,13 +49,13 @@ You can choose your preferred deployment method:
 
 #### Deploy to Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fgcui-art%2Fsuno-api&env=SUNO_COOKIE&project-name=suno-api&repository-name=suno-api)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fraptor7242N%2Fsuno-api-5.5&env=SUNO_COOKIE&project-name=suno-api-5.5&repository-name=suno-api-5.5)
 
 #### Run locally
 
 \`\`\`bash
-git clone https://github.com/gcui-art/suno-api.git
-cd suno-api
+git clone https://github.com/raptor7242N/suno-api-5.5.git
+cd suno-api-5.5
 npm install
 \`\`\`
 
@@ -109,6 +112,8 @@ Suno API currently mainly implements the following APIs:
 - \`/api/generate_stems\`: Make stem tracks (separate audio and music track)
 - \`/api/get_aligned_lyrics\`: Get list of timestamps for each word in the lyrics
 - \`/api/concat\`: Generate the whole song from extensions
+- \`/api/funnel/prompt\`: Generate a Suno-ready prompt via [Suno Funnel](https://github.com/2569658930/tan)
+- \`/api/funnel/generate\`: Generate prompt + create music in one call
 \`\`\`
 
 For more detailed documentation, please check out the demo site:
@@ -129,11 +134,25 @@ For more detailed documentation, please check out the demo site:
           <h1 className="font-bold text-7xl flex text-white/90">
             Suno AI API
           </h1>
-          <p className="text-white/80 text-lg">
-            `Suno-api` is an open-source project that enables you to set up your own Suno AI API.
+          <p className="text-white/80 text-lg max-w-2xl">
+            `suno-api-5.5` is an open-source fork that lets you run your own Suno AI API — now with a Suno Funnel connector built in.
+          </p>
+          <p className="text-white/70 text-sm max-w-2xl leading-relaxed">
+            Shout-out to{' '}
+            <a href="https://github.com/2569658930" className="underline hover:text-white" target="_blank" rel="noreferrer">
+              @2569658930
+            </a>
+            : saw the Vercel fix you offered in{' '}
+            <a href="https://github.com/gcui-art/suno-api/issues/278" className="underline hover:text-white" target="_blank" rel="noreferrer">
+              issue #278
+            </a>
+            , but upstream never had something like Suno Funnel wired up — so we included it here and wanted to give you the credit.
           </p>
         </div>
 
+      </Section>
+      <Section className="my-10">
+        <SunoFunnel />
       </Section>
       <Section className="my-10">
         <article className="prose lg:prose-lg max-w-3xl">

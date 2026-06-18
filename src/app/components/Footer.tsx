@@ -14,10 +14,14 @@ export default function Footer() {
             <p className="px-6 py-3 rounded-full flex justify-center items-center gap-2
              hover:text-white duration-200
                 ">
-                <span>© 2024</span>
-                <Link href="https://github.com/gcui-art/suno-api/">
-                    gcui-art/suno-api
+                <span>© 2026</span>
+                <Link href="https://github.com/raptor7242N/suno-api-5.5">
+                    raptor7242N/suno-api-5.5
                 </Link>
+                <span>·</span>
+                <a href="https://github.com/2569658930/tan" target="_blank" rel="noreferrer">
+                    Suno Funnel by @2569658930
+                </a>
             </p>
         </footer>
     );

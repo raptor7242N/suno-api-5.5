@@ -31,7 +31,16 @@ export default function Header() {
                     <p className="p-2 lg:px-6 lg:py-3 rounded-full flex justify-center items-center
                 lg:hover:bg-indigo-300 duration-200
                 ">
-                        <a href="https://github.com/gcui-art/suno-api/"
+                        <a href="https://2569658930.github.io/tan/"
+                            target="_blank"
+                            rel="noreferrer">
+                            Suno Funnel
+                        </a>
+                    </p>
+                    <p className="p-2 lg:px-6 lg:py-3 rounded-full flex justify-center items-center
+                lg:hover:bg-indigo-300 duration-200
+                ">
+                        <a href="https://github.com/raptor7242N/suno-api-5.5"
                             target="_blank"
                             className="flex items-center justify-center gap-1">
                             <span className="">
